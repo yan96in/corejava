@@ -23,8 +23,8 @@ public class Employee implements Comparable<Employee> {
 		salary += raise;
 	}
 
-	/*
-	 * Comares employees by salary
+	/**
+	 * Compares employees by salary
 	 * 
 	 * @param other another Employee object
 	 * 

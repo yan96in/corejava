@@ -31,7 +31,7 @@ public class PairTest2 {
 }
 
 class ArrayAlg {
-	/*
+	/**
 	 * Gets the minimum and maximum of an array of strings.
 	 * 
 	 * @param a an array of strings
