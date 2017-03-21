@@ -1,4 +1,4 @@
-package canlendarTest;
+package canlendar;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
