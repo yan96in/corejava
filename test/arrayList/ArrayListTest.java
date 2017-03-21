@@ -21,6 +21,12 @@ public class ArrayListTest {
 		for (Employee e : staff) {
 			System.out.println("name=" + e.getName() + ",salary=" + e.getSalary() + ",hireDay=" + e.getHireDay());
 		}
+		
+		// double brace initialization
+		new ArrayList<Employee>() {
+			{
+				add(new Employee("Carl Cracker", 75000, 1987, 12, 15));
+			}
+		};
 	}
-
 }
