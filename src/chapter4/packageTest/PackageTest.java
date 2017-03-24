@@ -1,6 +1,7 @@
 package chapter4.packageTest;
-import corejava.*;
 import static java.lang.System.*;
+
+import equals.Employee;
 public class PackageTest {
 	public static void main(String[] args){
 		//because of the import statement,we don't have to use corejava.Employee here
