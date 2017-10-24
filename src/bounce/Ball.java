@@ -1,5 +1,7 @@
 package bounce;
 
+import util.u;
+
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 /**
@@ -24,7 +26,7 @@ public class Ball {
 	public void move(Rectangle2D bounds) {
 		x += dx;
 		y += dy;
-		if (x < bounds.getMaxX()) {
+		if (x < bounds.getMinX()) {	//fixed bug ,小于MinX而不是MaxX
 			x = bounds.getMinX();
 			dx = -dx;
 		}

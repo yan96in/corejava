@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import bounce.Ball;
 import bounce.BallComponent;
+import util.u;
 
 public class BounceThread {
 
@@ -76,7 +77,7 @@ class BounceFrame extends JFrame {
 					Thread.sleep(DELAY);
 				}
 			} catch (InterruptedException e) {
-				// TODO: handle exception
+				u.println(e.getMessage());
 			}
 		};
 		Thread t = new Thread(r);

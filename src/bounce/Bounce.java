@@ -1,5 +1,7 @@
 package bounce;
 
+import util.u;
+
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.EventQueue;
@@ -73,7 +75,7 @@ class BounceFrame extends JFrame {
 				Thread.sleep(DELAY);
 			}
 		} catch (InterruptedException e) {
-			
+			u.println(e.getMessage());
 		}
 	}
 }
