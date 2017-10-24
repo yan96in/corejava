@@ -45,6 +45,24 @@ class BounceFrame extends JFrame {
 		add(comp, BorderLayout.CENTER);
 		JPanel buttonPanel = new JPanel();
 		addButton(buttonPanel, "Start", event -> addBall());
+		addButton(buttonPanel,"Close",event -> System.exit(0));
+		add(buttonPanel,BorderLayout.SOUTH);
+		/**
+		 * Causes this Window to be sized to fit the preferred size
+		 * and layouts of its subcomponents. The resulting width and
+		 * height of the window are automatically enlarged if either
+		 * of dimensions is less than the minimum size as specified
+		 * by the previous call to the {@code setMinimumSize} method.
+		 * <p>
+		 * If the window and/or its owner are not displayable yet,
+		 * both of them are made displayable before calculating
+		 * the preferred size. The Window is validated after its
+		 * size is being calculated.
+		 *
+		 * @see Component#isDisplayable
+		 * @see #setMinimumSize
+		 */
+		pack();
 	}
 
 	/**
