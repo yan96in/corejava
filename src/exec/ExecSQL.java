@@ -4,10 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Properties;
 import java.util.Scanner;
 
@@ -30,13 +27,34 @@ public class ExecSQL {
                     if(line.endsWith(":")){//reomve trailing semicolon
                         line=line.substring(0,line.length()-1);
                     }
+                    try {
+                        boolean isResult=stat.execute(line);
+                        if(isResult){
+                            try(ResultSet rs=stat.getResultSet()){
+                                showResultSet(rs);
+                            }
+                        }else{
+                            int updateCount=stat.getUpdateCount();
+                            System.out.println(updateCount+" rows updated");
+                        }
+                    }catch (SQLException ex){
+                        for(Throwable e:ex){
+                            e.printStackTrace();
+                        }
+                    }
                 }
             }
-        }catch (SQLException e){
-
+        }catch (SQLException ex){
+            for(Throwable e:ex){
+                e.printStackTrace();
+            }
         }
     }
 
+/**
+ * gets a connection from the properties specified in the file database.properties.
+ * @return the database connection
+ */
     public static Connection getConnection() throws SQLException,IOException{
         Properties props = new Properties();
         try (InputStream in = Files.newInputStream(Paths.get("database.properties"))) {
@@ -49,5 +67,26 @@ public class ExecSQL {
         String password = props.getProperty("jdbc.password");
 
         return DriverManager.getConnection(url, username, password);
+    }
+
+    /**
+     * prints a result set
+     * @param result the result set to be printed
+     */
+    public static void showResultSet(ResultSet result) throws SQLException{
+        ResultSetMetaData metaData=result.getMetaData();
+        int columnCount=metaData.getColumnCount();
+        for (int i = 1; i <= columnCount; i++) {
+            if(i>1)System.out.print(", ");
+                System.out.print(metaData.getColumnLabel(i));
+        }
+        System.out.println();
+        while (result.next()){
+            for (int i = 1; i < columnCount; i++) {
+                if(i>1)System.out.print(", ");
+                System.out.print(result.getString(i));
+            }
+            System.out.println();
+        }
     }
 }
